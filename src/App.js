@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import SignIn from './components/sign_in/sign_in';
+import SignUp from './components/sign_up/sign_up';
+import {
+  Routes,
+  Route,
+  Link,
+} from 'react-router-dom';
 
-function App() {
+const Middleware = ({component}) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header >
+        <Link to="/sign-up"></Link>
+        <Link to="/sign-in"></Link>
       </header>
-    </div>
-  );
+      {component}
+    </>
+  )
 }
 
+const App = () => {
+  return (
+  <div className="container">
+    <Routes >
+      <Route path="/sign-in" element={<Middleware component={<SignIn />} />} />
+      <Route path="/sign-up" element={<Middleware component={<SignUp />} />} />
+    </Routes>
+  </div>
+  )
+}
 export default App;
